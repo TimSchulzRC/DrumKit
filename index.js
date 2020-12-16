@@ -40,10 +40,20 @@ function playSound(key) {
 for (i in drumButtons) {
   document.querySelectorAll(".drum")[i].onclick = function () {
     playSound(this.innerHTML);
+    buttonAnimation(this.innerHTML);
   };
 }
 
 document.addEventListener("keydown", function (event) {
   console.log(event.key);
   playSound(event.key);
+  buttonAnimation(event.key);
 });
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
